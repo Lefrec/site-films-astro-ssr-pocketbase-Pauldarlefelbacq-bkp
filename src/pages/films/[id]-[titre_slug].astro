@@ -2,7 +2,7 @@
 import { Debug } from "astro:components";
 import Layout from "../../layouts/Layout.astro";
 import type {
-  FilmsResponse,
+  FilmResponse,
   PersonneResponse,
   RoleResponse,
 } from "../../pocketbase-types";
@@ -14,13 +14,13 @@ const isLoggedIn = Astro.locals.pb.authStore.isValid;
 
 const film = await Astro.locals.pb
   .collection<
-    FilmsResponse<{
+    FilmResponse<{
       producteur: PersonneResponse;
       realisateur: PersonneResponse[];
       scenariste: PersonneResponse[];
       Role_via_film: RoleResponse<{ acteur: PersonneResponse }>[];
     }>
-  >("Films")
+  >("film")
   .getOne(id, {
     expand: "producteur,realisateur,scenariste,Role_via_film.acteur",
   });
@@ -37,8 +37,8 @@ const listNames = (list) => {
 };
 
 const pageTitle = film.titre ? `${film.titre} - Film` : "Film";
-const releaseDate = film.dete_de_sortie
-  ? new Date(film.dete_de_sortie).toLocaleDateString("fr-FR")
+const releaseDate = film.date_sortie
+  ? new Date(film.date_sortie).toLocaleDateString("fr-FR")
   : "Non specifie";
 ---
 
@@ -47,7 +47,7 @@ const releaseDate = film.dete_de_sortie
   <div>
     <div>
       <h1>{film.titre || "Film"}</h1>
-      <p>{film.genres?.join(", ") || "Genres non definis"}</p>
+      <p>{film.genre?.join(", ") || "Genres non definis"}</p>
     </div>
     {isLoggedIn && <a href={`/films/edit/${id}-${titre_slug}`}>Editer</a>}
   </div>
@@ -59,7 +59,7 @@ const releaseDate = film.dete_de_sortie
     </div>
     <div>
       <p>Duree (min)</p>
-      <p>{film.dure_min ?? "Non specifie"}</p>
+      <p>{film.duree ?? "Non specifie"}</p>
     </div>
     <div>
       <p>Producteur</p>

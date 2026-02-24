@@ -1,16 +1,16 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((app) => {
-  const collection = app.findCollectionByNameOrId("pbc_3295370174")
+  const collection = app.findCollectionByNameOrId("pbc_1885662682")
 
   // add field
-  collection.fields.addAt(10, new Field({
+  collection.fields.addAt(3, new Field({
     "cascadeDelete": false,
-    "collectionId": "pbc_3495314148",
+    "collectionId": "_pb_users_auth_",
     "hidden": false,
-    "id": "relation1466534506",
+    "id": "relation2375276105",
     "maxSelect": 1,
     "minSelect": 0,
-    "name": "role",
+    "name": "user",
     "presentable": false,
     "required": false,
     "system": false,
@@ -19,10 +19,10 @@ migrate((app) => {
 
   return app.save(collection)
 }, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_3295370174")
+  const collection = app.findCollectionByNameOrId("pbc_1885662682")
 
   // remove field
-  collection.fields.removeById("relation1466534506")
+  collection.fields.removeById("relation2375276105")
 
   return app.save(collection)
 })

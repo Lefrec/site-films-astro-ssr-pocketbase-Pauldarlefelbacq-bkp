@@ -19,33 +19,6 @@ migrate((app) => {
         "type": "text"
       },
       {
-        "cascadeDelete": false,
-        "collectionId": "pbc_3069637536",
-        "hidden": false,
-        "id": "relation3942306658",
-        "maxSelect": 1,
-        "minSelect": 0,
-        "name": "acteur",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "relation"
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
-        "id": "text1819170229",
-        "max": 0,
-        "min": 0,
-        "name": "nom",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": false,
-        "system": false,
-        "type": "text"
-      },
-      {
         "hidden": false,
         "id": "autodate2990389176",
         "name": "created",
@@ -66,10 +39,10 @@ migrate((app) => {
         "type": "autodate"
       }
     ],
-    "id": "pbc_3495314148",
+    "id": "pbc_1885662682",
     "indexes": [],
     "listRule": null,
-    "name": "Role",
+    "name": "role",
     "system": false,
     "type": "base",
     "updateRule": null,
@@ -78,7 +51,7 @@ migrate((app) => {
 
   return app.save(collection);
 }, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_3495314148");
+  const collection = app.findCollectionByNameOrId("pbc_1885662682");
 
   return app.delete(collection);
 })

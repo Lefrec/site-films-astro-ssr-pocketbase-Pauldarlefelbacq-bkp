@@ -19,39 +19,11 @@ migrate((app) => {
         "type": "text"
       },
       {
-        "autogeneratePattern": "",
         "hidden": false,
-        "id": "text1819170229",
-        "max": 0,
-        "min": 0,
-        "name": "nom",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": false,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
-        "id": "text2787480667",
-        "max": 0,
-        "min": 0,
-        "name": "prenom",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": false,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "hidden": false,
-        "id": "date2710985927",
+        "id": "date3467569840",
         "max": "",
         "min": "",
-        "name": "date_de_naissance",
+        "name": "date_naissance",
         "presentable": false,
         "required": false,
         "system": false,
@@ -59,10 +31,10 @@ migrate((app) => {
       },
       {
         "hidden": false,
-        "id": "date767417679",
+        "id": "date2274296624",
         "max": "",
         "min": "",
-        "name": "date_de_deces",
+        "name": "date_deces",
         "presentable": false,
         "required": false,
         "system": false,
@@ -89,10 +61,10 @@ migrate((app) => {
         "type": "autodate"
       }
     ],
-    "id": "pbc_3069637536",
+    "id": "pbc_1333826038",
     "indexes": [],
     "listRule": null,
-    "name": "Personne",
+    "name": "personne",
     "system": false,
     "type": "base",
     "updateRule": null,
@@ -101,7 +73,7 @@ migrate((app) => {
 
   return app.save(collection);
 }, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_3069637536");
+  const collection = app.findCollectionByNameOrId("pbc_1333826038");
 
   return app.delete(collection);
 })

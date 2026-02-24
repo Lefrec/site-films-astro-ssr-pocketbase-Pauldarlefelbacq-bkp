@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import slug from "slug";
 
-const films = await Astro.locals.pb.collection("Films").getFullList();
+const films = await Astro.locals.pb.collection("film").getFullList();
 const isLoggedIn = Astro.locals.pb.authStore.isValid;
 ---
 
@@ -27,7 +27,7 @@ const isLoggedIn = Astro.locals.pb.authStore.isValid;
             {film.titre || "Film"}
           </a>
           <p>
-            {film.genres?.join(", ") || "Genres non definis"}
+            {film.genre?.join(", ") || "Genres non definis"}
           </p>
         </div>
         {isLoggedIn && (

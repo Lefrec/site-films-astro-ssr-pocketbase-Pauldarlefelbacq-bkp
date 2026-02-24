@@ -1,10 +1,10 @@
 ---
 import slug from "slug";
 
-import type { FilmsResponse } from "../pocketbase-types";
+import type { FilmResponse } from "../pocketbase-types";
 import LinkFilms from "./LinkFilms.astro";
 type Props={
-  films: FilmsResponse[];
+  films: FilmResponse[];
 }
 const films = Astro.props.films;
 ---

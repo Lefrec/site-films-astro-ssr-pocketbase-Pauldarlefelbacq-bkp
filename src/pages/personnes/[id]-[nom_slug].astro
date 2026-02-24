@@ -1,8 +1,9 @@
 ﻿---
 import { Debug } from "astro:components";
 import Layout from "../../layouts/Layout.astro";
-import type { FilmResponse, PersonneResponse } from "../../pocketbase-types";
+import type { FilmResponse, PersonneResponse, RoleResponse } from "../../pocketbase-types";
 import LinkListeFilms from "../../components/LinkListeFilms.astro";
+import LinkFilms from "../../components/LinkFilms.astro";
 export const prerender = false;
 
 const { id, nom_slug } = Astro.params;
@@ -10,6 +11,7 @@ const personne = await Astro.locals.pb.collection<PersonneResponse<{
   producteur: FilmResponse[];
   realisateur: FilmResponse[];
   scenariste: FilmResponse[];
+  role_via_acteur : RoleResponse< {film: FilmResponse}>[];
 }>>("personne").getOne(id, {
   expand:
     "producteur,realisateur,scenariste",
@@ -80,6 +82,15 @@ if (personne.date_naissance) {
     <div>
       <p>Film comme scenariste</p>
       <LinkListeFilms films={personne.expand?.scenariste || []} />
+    </div>
+    <div>
+      <p>Films comme acteur</p>
+      <ul>
+        { personne.expand.role_via_acteur.map((role) =>
+            <li>
+              Joue le role de {role.nom} dans le film <LinkFilms film={ role.expand.film } />
+            </li> )}
+      </ul>
     </div>
 
   <a href="/personnes"> Retour a la liste des personnes </a>

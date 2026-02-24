@@ -8,13 +8,13 @@ export const prerender = false;
 
 const { id, nom_slug } = Astro.params;
 const personne = await Astro.locals.pb.collection<PersonneResponse<{
-  producteur: FilmResponse[];
-  realisateur: FilmResponse[];
-  scenariste: FilmResponse[];
+  role_via_scenariste: FilmResponse[];
+  role_via_producteur: FilmResponse[];
+  role_via_realisateur: FilmResponse[];
   role_via_acteur : RoleResponse< {film: FilmResponse}>[];
 }>>("personne").getOne(id, {
   expand:
-    "producteur,realisateur,scenariste",
+    "role_via_producteur,role_via_realisateur,role_via_scenariste,role_via_acteur,role_via_acteur.film",
 });
 const isLoggedIn = Astro.locals.pb.authStore.isValid;
 
@@ -73,22 +73,22 @@ if (personne.date_naissance) {
     </div>
     <div>
       <p>Film comme producteur</p>
-      <LinkListeFilms films={personne.expand?.producteur || []} />
+      <LinkListeFilms films={personne.expand?.role_via_producteur || []} />
     </div>
     <div>
       <p>Film comme realisateur</p>
-      <LinkListeFilms films={personne.expand?.realisateur || []} />
+      <LinkListeFilms films={personne.expand?.role_via_realisateur || []} />
   </div>
     <div>
       <p>Film comme scenariste</p>
-      <LinkListeFilms films={personne.expand?.scenariste || []} />
+      <LinkListeFilms films={personne.expand?.role_via_scenariste || []} />
     </div>
     <div>
       <p>Films comme acteur</p>
       <ul>
-        { personne.expand.role_via_acteur.map((role) =>
+        { personne.expand?.role_via_acteur?.map((role) =>
             <li>
-              Joue le role de {role.nom} dans le film <LinkFilms film={ role.expand.film } />
+              Joue le role de {role.nom} dans le film <LinkFilms film={ role.expand?.film } />
             </li> )}
       </ul>
     </div>

@@ -116,6 +116,7 @@ export type FilmRecord = {
 	duree?: number
 	genre?: FilmGenreOptions[]
 	id: string
+	image?: FileNameString
 	langue?: string
 	pays?: FilmPaysOptions[]
 	producteur?: RecordIdString[]

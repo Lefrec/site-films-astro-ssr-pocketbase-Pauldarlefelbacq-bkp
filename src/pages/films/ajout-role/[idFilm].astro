@@ -4,15 +4,15 @@ import slug from "slug";
 
 export const prerender = false;
 const { idFilm } = Astro.params;
-const film = await Astro.locals.pb.collection("Films").getOne(idFilm);
-const personnes = await Astro.locals.pb.collection("Personne").getFullList({
+const film = await Astro.locals.pb.collection("film").getOne(idFilm);
+const personnes = await Astro.locals.pb.collection("personne").getFullList({
     fields: "id,nom,prenom",
 });
 if (Astro.request.method === "POST") {
     const data = await Astro.request.formData();
     let role;
     try {
-        role = await Astro.locals.pb.collection("Role").create(data);
+        role = await Astro.locals.pb.collection("role").create(data);
     } catch (error) {
         console.error("Erreur création du role:", error);
        

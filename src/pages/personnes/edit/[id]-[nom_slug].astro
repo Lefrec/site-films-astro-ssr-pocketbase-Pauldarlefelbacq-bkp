@@ -22,7 +22,7 @@ let errorMessage = "";
 
 const loadPersonne = async () => {
   if (!id || id === "new") return null;
-  return Astro.locals.pb.collection("Personne").getOne(id);
+  return Astro.locals.pb.collection("personne").getOne(id);
 };
 
 if (Astro.request.method === "POST") {
@@ -49,12 +49,12 @@ if (Astro.request.method === "POST") {
 
     try {
       if (intent === "create") {
-        const record = await Astro.locals.pb.collection("Personne").create(payload);
+        const record = await Astro.locals.pb.collection("personne").create(payload);
         const slug = toSlug(nom);
         return Astro.redirect(`/personnes/${record.id}-${slug}`);
       }
 
-      await Astro.locals.pb.collection("Personne").update(id, payload);
+      await Astro.locals.pb.collection("personne").update(id, payload);
       return Astro.redirect(`/personnes/${id}-${nom_slug || "personne"}`);
     } catch (error) {
       if (error instanceof Error) {

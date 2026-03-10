@@ -8,6 +8,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
+  security: {
+    checkOrigin: false
+  },
+  
   adapter: node({
     mode: 'standalone'
   }),
@@ -17,7 +22,4 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  security: {
-    checkOrigin: false
-  }
 });

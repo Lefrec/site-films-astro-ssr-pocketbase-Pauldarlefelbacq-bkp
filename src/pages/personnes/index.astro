@@ -8,7 +8,7 @@ const isLoggedIn = Astro.locals.pb.authStore.isValid;
 
 <Layout pageTitle="Personnalités">
   <div>
-    <h1>Hey Personnes</h1>
+    <h1>Personnes</h1>
     { 
     Astro.locals.pb.authStore.isValid &&
     <a href="/personnes/edit/">Ajouter une nouvelle personne</a>

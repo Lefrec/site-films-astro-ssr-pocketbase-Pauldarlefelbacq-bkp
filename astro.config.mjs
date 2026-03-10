@@ -12,7 +12,7 @@ export default defineConfig({
   security: {
     checkOrigin: false
   },
-  
+
   adapter: node({
     mode: 'standalone'
   }),

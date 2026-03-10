@@ -17,5 +17,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22012
         script: | 
+          apt upgrade
           cd /var/www/films/
           ./deploiement.sh
